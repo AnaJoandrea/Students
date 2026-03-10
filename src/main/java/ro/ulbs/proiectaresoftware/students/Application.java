@@ -1,5 +1,8 @@
 package ro.ulbs.proiectaresoftware.students;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
     static void main() {
         Student s1 = new Student(112, "Ioan", "Popa", "TI21/1");
@@ -7,9 +10,47 @@ public class Application {
         Student s3 = new Student(120, "Alis", "Popa", "TI21/2");
         Student s4 = new Student(122, "Mihai", "Vecerdea", "TI22/1");
         Student s5 = new Student(122, "Eugen", "Uritescu", "TI22/2");
-        s1.getDate();
+        /*s1.getDate();
         s2.getDate();
         s3.getDate();
-        s4.getDate();
+        s4.getDate();*/
+
+
+        //LAB2
+        //a)
+        List<Student> studenti = new ArrayList<>();
+        studenti.add(s1);
+        studenti.add(s2);
+        studenti.add(s3);
+        studenti.add(s4);
+        studenti.add(s5);
+        for(Student s : studenti)
+            s.getDate();
+
+        //b)
+        Student v1 = new Student(120, "Alis", "Popa", "TI21/2");
+        Student v2 = new Student(112, "Maria", "Popa", "TI21/1");
+        boolean gasit = false;
+        for(Student s : studenti){
+            if(s.cautareStudent(v1)) {
+                gasit = true;
+                break;
+            }
+        }
+        if(gasit)
+            System.out.println("TRUE");
+        else
+            System.out.println("FALSE");
+        gasit = false;
+        for(Student s : studenti) {
+            if (s.cautareStudent(v2)){
+                gasit = true;
+                break;
+            }
+        }
+        if(gasit)
+            System.out.println("TRUE");
+        else
+            System.out.println("FALSE");
     }
 }

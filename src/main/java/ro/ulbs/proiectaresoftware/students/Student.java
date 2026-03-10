@@ -31,4 +31,10 @@ public class Student {
     public void getDate(){
         System.out.println(getNumarMatricol() + " " + getNume() + ' ' + getPrenume() + ' ' + getFormatieDeStudiu());
     }
+
+    public boolean cautareStudent(Student s){
+        if(s == null)
+            return false;
+        return this.prenume.equals(s.prenume) && this.nume.equals(s.nume) && this.formatieDeStudiu.equals(s.formatieDeStudiu);
+    }
 }
