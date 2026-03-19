@@ -32,9 +32,12 @@ public class Student {
         System.out.println(getNumarMatricol() + " " + getNume() + ' ' + getPrenume() + ' ' + getFormatieDeStudiu());
     }
 
-    public boolean cautareStudent(Student s){
-        if(s == null)
+    @Override
+    public boolean equals(Object s) {
+        if (s == null || !(s instanceof Student)) {
             return false;
-        return this.prenume.equals(s.prenume) && this.nume.equals(s.nume) && this.formatieDeStudiu.equals(s.formatieDeStudiu);
+        }
+        Student student = (Student) s;
+        return this.prenume.equals(student.prenume) && this.nume.equals(student.nume) && this.formatieDeStudiu.equals(student.formatieDeStudiu);
     }
 }

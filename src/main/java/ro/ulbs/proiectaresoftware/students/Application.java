@@ -30,27 +30,7 @@ public class Application {
         //b)
         Student v1 = new Student(120, "Alis", "Popa", "TI21/2");
         Student v2 = new Student(112, "Maria", "Popa", "TI21/1");
-        boolean gasit = false;
-        for(Student s : studenti){
-            if(s.cautareStudent(v1)) {
-                gasit = true;
-                break;
-            }
-        }
-        if(gasit)
-            System.out.println("TRUE");
-        else
-            System.out.println("FALSE");
-        gasit = false;
-        for(Student s : studenti) {
-            if (s.cautareStudent(v2)){
-                gasit = true;
-                break;
-            }
-        }
-        if(gasit)
-            System.out.println("TRUE");
-        else
-            System.out.println("FALSE");
+        System.out.println("Este Alis Popa in lista? " + studenti.contains(v1));
+        System.out.println("Este Maria Popa (TI21/1) in lista? " + studenti.contains(v2));
     }
 }
