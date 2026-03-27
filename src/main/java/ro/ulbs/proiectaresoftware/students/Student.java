@@ -5,12 +5,17 @@ public class Student {
     String prenume;
     String nume;
     String formatieDeStudiu;
+    float nota;
 
     public Student(int numarMatricol, String prenume, String nume, String formatieDeStudiu) {
         this.numarMatricol = numarMatricol;
         this.prenume = prenume;
         this.nume = nume;
         this.formatieDeStudiu = formatieDeStudiu;
+    }
+
+    public void setNota(float nota){
+        this.nota=nota;
     }
 
     public int getNumarMatricol() {
@@ -38,6 +43,12 @@ public class Student {
             return false;
         }
         Student student = (Student) s;
-        return this.prenume.equals(student.prenume) && this.nume.equals(student.nume) && this.formatieDeStudiu.equals(student.formatieDeStudiu);
+       // return this.prenume.equals(student.prenume) && this.nume.equals(student.nume) && this.formatieDeStudiu.equals(student.formatieDeStudiu);
+        return this.numarMatricol == student.numarMatricol;
+    }
+
+    @Override
+    public String toString() {
+        return numarMatricol + ", " + prenume + ", " + nume + ", " + formatieDeStudiu + ", nota: " + nota;
     }
 }
