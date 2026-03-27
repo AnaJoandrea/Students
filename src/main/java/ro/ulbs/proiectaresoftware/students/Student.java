@@ -40,4 +40,9 @@ public class Student {
         Student student = (Student) s;
         return this.prenume.equals(student.prenume) && this.nume.equals(student.nume) && this.formatieDeStudiu.equals(student.formatieDeStudiu);
     }
+
+    @Override
+    public String toString() {
+        return numarMatricol + ", " + prenume + ", " + nume + ", " + formatieDeStudiu;
+    }
 }
