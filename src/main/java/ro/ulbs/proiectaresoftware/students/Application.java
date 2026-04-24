@@ -8,6 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Comparator;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Hashtable;
@@ -27,7 +33,7 @@ public class Application {
         Student s3 = new Student(120, "Alis", "Popa", "TI21/2");
         Student s4 = new Student(122, "Mihai", "Vecerdea", "TI22/1");
         Student s5 = new Student(122, "Eugen", "Uritescu", "TI22/2");
-        s1.getDate();
+        /*s1.getDate();
         s2.getDate();
         s3.getDate();
         s4.getDate();*/

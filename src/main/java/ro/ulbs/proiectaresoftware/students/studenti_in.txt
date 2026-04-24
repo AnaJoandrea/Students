@@ -2,5 +2,7 @@
 1028,Mihai,Ionescu,TI132/1
 1025,Andrei,Popa,ISM141/2
 1024,Ioan,Mihalcea,ISM141/1
+1025,Andrei,Popa,ISM141/2
+1026,Bianca,Popescu,TI131/2
 1026,Anamaria,Prodan,TI131/1
 1029,Bianca,Popescu,TI131/1
