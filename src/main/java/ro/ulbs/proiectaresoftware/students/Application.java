@@ -25,6 +25,33 @@ import java.util.TreeMap;
 import java.util.WeakHashMap;
 
 public class Application {
+
+    static StudentImutabil schimbaFormatia(StudentImutabil st, String nouaFormatieDeStudiu) {
+        return new StudentImutabil(
+                st.getNumarMatricol(),
+                st.getPrenume(),
+                st.getNume(),
+                nouaFormatieDeStudiu,
+                st.getNota()
+        );
+    }
+
+    static List<StudentImutabil> imparteInDouaFormatii(List<StudentImutabil> studenti, String formatia1, String formatia2) {
+        List<StudentImutabil> listaNoua = new ArrayList<>();
+        int dimensiuneFormatia1 = (studenti.size() / 2) + (studenti.size() % 2);
+
+        for (int i = 0; i < studenti.size(); i++) {
+            StudentImutabil studentCurent = studenti.get(i);
+
+            if (i < dimensiuneFormatia1) {
+                listaNoua.add(schimbaFormatia(studentCurent, formatia1));
+            } else {
+                listaNoua.add(schimbaFormatia(studentCurent, formatia2));
+            }
+        }
+        return listaNoua;
+    }
+
     static void main() {
 
         //LAB1
@@ -41,7 +68,7 @@ public class Application {
 
         //LAB2
         //a)
-        List<Student> studenti = new ArrayList<>();
+       // List<Student> studenti = new ArrayList<>();
        /* studenti.add(s1);
         studenti.add(s2);
         studenti.add(s3);
@@ -124,7 +151,7 @@ public class Application {
         }
         */
 
-        //LAB5
+       /* //LAB5
         List<StudentBursier> bursieri = new ArrayList<>();
         bursieri.add(new StudentBursier(1025, "Andrei", "Popa", "ISM141/2", 8.70f, 725.50));
         bursieri.add(new StudentBursier(1024, "Ioan", "Mihalcea", "ISM141/1", 9.80f, 801.10));
@@ -145,6 +172,27 @@ public class Application {
         } catch (IOException e) {
             System.err.println("Eroare la scrierea in fisier: " + e.getMessage());
             e.printStackTrace();
+        } */
+
+        //LAB 7
+        List<StudentImutabil> studentiLab7 = new ArrayList<>();
+        studentiLab7.add(new StudentImutabil(1, "Ana", "Popa", "Nedefinit", 9.5f));
+        studentiLab7.add(new StudentImutabil(2, "Mihai", "Radu", "Nedefinit", 8.0f));
+        studentiLab7.add(new StudentImutabil(3, "Elena", "Stan", "Nedefinit", 10.0f));
+        studentiLab7.add(new StudentImutabil(4, "Vlad", "Ionescu", "Nedefinit", 7.5f));
+        studentiLab7.add(new StudentImutabil(5, "Ioana", "Marin", "Nedefinit", 9.0f));
+
+        System.out.println("Lista inainte de impartire:");
+        for (StudentImutabil s : studentiLab7) {
+            System.out.println(s);
+        }
+
+        // Apelam functia de impartire conform indicatiilor
+        List<StudentImutabil> studentiRepartizati = imparteInDouaFormatii(studentiLab7, "TI 211 1", "TI 211 2");
+
+        System.out.println("\nLista DUPA impartirea in formatii:");
+        for (StudentImutabil s : studentiRepartizati) {
+            System.out.println(s);
         }
     }
 }
