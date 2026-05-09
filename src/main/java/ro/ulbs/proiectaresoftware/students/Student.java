@@ -33,10 +33,13 @@ public class Student {
     public String getFormatieDeStudiu() {
         return formatieDeStudiu;
     }
+
     public void getDate(){
         System.out.println(getNumarMatricol() + " " + getNume() + ' ' + getPrenume() + ' ' + getFormatieDeStudiu());
     }
-
+    public float getNota() {
+        return nota;
+    }
     @Override
     public boolean equals(Object s) {
         if (s == null || !(s instanceof Student)) {
