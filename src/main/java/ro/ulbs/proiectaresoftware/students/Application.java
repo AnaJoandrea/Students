@@ -186,8 +186,6 @@ public class Application {
         for (StudentImutabil s : studentiLab7) {
             System.out.println(s);
         }
-
-        // Apelam functia de impartire conform indicatiilor
         List<StudentImutabil> studentiRepartizati = imparteInDouaFormatii(studentiLab7, "TI 211 1", "TI 211 2");
 
         System.out.println("\nLista DUPA impartirea in formatii:");
