@@ -23,6 +23,12 @@ import java.util.LinkedHashMap;
 import java.util.Properties;
 import java.util.TreeMap;
 import java.util.WeakHashMap;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 
 public class Application {
 
@@ -50,6 +56,61 @@ public class Application {
             }
         }
         return listaNoua;
+    }
+    public static void writeToXls(List<StudentImutabil> studenti, String fileName) {
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Studenti");
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Numar Matricol");
+            headerRow.createCell(1).setCellValue("Prenume");
+            headerRow.createCell(2).setCellValue("Nume");
+            headerRow.createCell(3).setCellValue("Formatie");
+            headerRow.createCell(4).setCellValue("Nota");
+            int rowNum = 1;
+            for (StudentImutabil s : studenti) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(s.getNumarMatricol());
+                row.createCell(1).setCellValue(s.getPrenume());
+                row.createCell(2).setCellValue(s.getNume());
+                row.createCell(3).setCellValue(s.getFormatieDeStudiu());
+                row.createCell(4).setCellValue(s.getNota());
+            }
+            try (FileOutputStream out = new FileOutputStream(fileName)) {
+                workbook.write(out);
+                System.out.println("Fișierul " + fileName + " a fost salvat cu succes!");
+            }
+        } catch (Exception e) {
+            System.out.println("Eroare la scriere: " + e.getMessage());
+        }
+    }
+
+    public static List<StudentImutabil> readFromXls(String fileName) {
+        List<StudentImutabil> listaCitita = new ArrayList<>();
+        File file = new File(fileName);
+
+        if (!file.exists()) {
+            System.out.println("Fișierul nu a fost găsit!");
+            return listaCitita;
+        }
+
+        try (InputStream in = new FileInputStream(file);
+             Workbook workbook = new XSSFWorkbook(in)) {
+            Sheet sheet = workbook.getSheetAt(0);
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+                if (row == null) continue;
+                int matricol = (int) row.getCell(0).getNumericCellValue();
+                String prenume = row.getCell(1).getStringCellValue();
+                String nume = row.getCell(2).getStringCellValue();
+                String formatie = row.getCell(3).getStringCellValue();
+                float nota = (float) row.getCell(4).getNumericCellValue();
+                StudentImutabil studentNou = new StudentImutabil(matricol, prenume, nume, formatie, nota);
+                listaCitita.add(studentNou);
+            }
+        } catch (Exception e) {
+            System.out.println("Eroare la citire: " + e.getMessage());
+        }
+        return listaCitita;
     }
 
     static void main() {
@@ -192,5 +253,15 @@ public class Application {
         for (StudentImutabil s : studentiRepartizati) {
             System.out.println(s);
         }
+
+        //LAB 8
+        String xlsFileName = "laborator8_students.xlsx";
+        writeToXls(studentiRepartizati, xlsFileName);
+        List<StudentImutabil> studentiDinExcel = readFromXls(xlsFileName);
+        System.out.println("\nStudenti cititi din " + xlsFileName + ":");
+        for (StudentImutabil st : studentiDinExcel) {
+            System.out.println(st);
+        }
     }
+
 }
