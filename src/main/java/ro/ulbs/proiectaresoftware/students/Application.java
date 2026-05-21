@@ -29,6 +29,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Application {
 
@@ -236,6 +238,7 @@ public class Application {
         } */
 
         //LAB 7
+        /*
         List<StudentImutabil> studentiLab7 = new ArrayList<>();
         studentiLab7.add(new StudentImutabil(1, "Ana", "Popa", "Nedefinit", 9.5f));
         studentiLab7.add(new StudentImutabil(2, "Mihai", "Radu", "Nedefinit", 8.0f));
@@ -262,6 +265,48 @@ public class Application {
         for (StudentImutabil st : studentiDinExcel) {
             System.out.println(st);
         }
-    }
+        */
 
+        //LAB9
+
+        List<Student> studentiCuNote = Arrays.asList(
+                new Student(1025, "Andrei", "Popa", "ISM141/2", 8.70f),
+                new Student(1024, "Ioan", "Mihalcea", "ISM141/1", 10.0f),
+                new Student(1026, "Anamaria", "Prodan", "TI131/1", 8.90f),
+                new Student(1029, "Bianca", "Popescu", "TI131/1", 10.0f),
+                new Student(1029, "Maria", "Pana", "TI131/2", 4.10f),
+                new Student(1029, "Gabriela", "Mohanu", "TI131/2", 7.33f),
+                new Student(1029, "Marius", "Nasta", "TI131/2", 3.20f),
+                new Student(1029, "Marius", "Nasta", "TI131/1", 5.12f),
+                new Student(1029, "Andrei", "Dobrescu", "TI131/2", 2.22f)
+        );
+
+        //a)
+        List<Student> studentiNota10 = studentiCuNote.stream().filter(s -> s.getNota() == 10.0f).collect(Collectors.toList());
+        System.out.println("a) Studenti cu nota 10:" + studentiNota10);
+
+        //b)
+        List<Student> studentiSub5 = studentiCuNote.stream().filter(s -> s.getNota() < 5.0f).collect(Collectors.toList());
+        System.out.println("b) Studenti cu nota sub 5: " + studentiSub5);
+
+        //c)
+        List<Student> studentiModificati = studentiCuNote.stream().map(s -> {
+                    if (s.getNota() < 4.0f) {
+                        return new Student(s.getNumarMatricol(), s.getPrenume(), s.getNume(), s.getFormatieDeStudiu(), 4.0f);
+                    }
+                    return s;
+                }).collect(Collectors.toList());
+        System.out.println("c) Lista dupa modificarea notelor: " + studentiModificati);
+
+        //d)
+        float sumaNotelor = studentiCuNote.stream()
+                .map(s -> s.getNota())
+                .reduce(0.0f, (a, b) -> a + b);
+        System.out.println("d) Suma notelor: " + sumaNotelor);
+
+        //e)
+        float media = sumaNotelor / studentiCuNote.size();
+        System.out.println("e) Media notelor: " + media);
+
+    }
 }

@@ -13,7 +13,13 @@ public class Student {
         this.nume = nume;
         this.formatieDeStudiu = formatieDeStudiu;
     }
-
+    public Student(int numarMatricol, String prenume, String nume, String formatieDeStudiu, float nota) {
+        this.numarMatricol = numarMatricol;
+        this.prenume = prenume;
+        this.nume = nume;
+        this.formatieDeStudiu = formatieDeStudiu;
+        this.nota = nota;
+    }
     public void setNota(float nota){
         this.nota=nota;
     }
