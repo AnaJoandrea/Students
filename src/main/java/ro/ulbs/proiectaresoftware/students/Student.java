@@ -1,5 +1,7 @@
 package ro.ulbs.proiectaresoftware.students;
 
+import java.util.Objects;
+
 public class Student {
     int numarMatricol;
     String prenume;
@@ -54,6 +56,11 @@ public class Student {
         Student student = (Student) s;
        // return this.prenume.equals(student.prenume) && this.nume.equals(student.nume) && this.formatieDeStudiu.equals(student.formatieDeStudiu);
         return this.numarMatricol == student.numarMatricol;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNumarMatricol(), getPrenume(), getNume(), getFormatieDeStudiu(), getNota());
     }
 
     @Override

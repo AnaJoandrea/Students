@@ -1,0 +1,6 @@
+10, coldstart, User:System
+11, init, System start
+12, init, System complete
+14, postinit, Starting engines
+17, login, {Checking validity|User:John Deere}
+18, loginok, {User:John Deere|Accountant}

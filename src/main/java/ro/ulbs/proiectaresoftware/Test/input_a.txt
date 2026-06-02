@@ -1,0 +1,11 @@
+10, 20260602, Backend, coldstart, User:System
+11, 20260602, Backend, init, System start
+12, 20260602, Backend, init, System complete
+13, 20260602, Frontend, opstart, {User:Administrator|Full rights}
+14, 20260602, Backend,  postinit, Starting engines
+15, 20260602, Frontend, opstart, Done
+16, 20260604, Frontend, login, {User:John Deere}
+17, 20260604, Backend, login, {Checking validity|User:John Deere}
+18, 20260604, Backend, loginok, {User:John Deere|Accountant}
+19, 20260604, Frontend, userok, {User:John Deere|Accountant}
+20, 20260604, Frontend, reports, {User:John Deere|Montly rep|current month}
